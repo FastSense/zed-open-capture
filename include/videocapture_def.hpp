@@ -58,8 +58,12 @@ enum class RESOLUTION {
  * \brief Available frames per seconds
  */
 enum class FPS {
+    FPS_10 = 10,
     FPS_15 = 15,    //!< 15 Frames per second. Available for all the resolutions.
+    FPS_20 = 20,
     FPS_30 = 30,    //!< 30 Frames per second. Not available for \ref RESOLUTION::HD2K.
+    FPS_40 = 40,
+    FPS_50 = 50,
     FPS_60 = 60,    //!< 60 Frames per second. Not available for \ref RESOLUTION::HD2K and  \ref RESOLUTION::HD1080.
     FPS_100 = 100,  //!< 100 Frames per second. Only available for \ref RESOLUTION::VGA.
     LAST = 101

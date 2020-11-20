@@ -126,7 +126,9 @@ if(BUILD_EXAMPLES)
 
         ##### OpenCV is required
         find_package(OpenCV REQUIRED)
+        find_package(Boost COMPONENTS program_options REQUIRED)
         include_directories(${OpenCV_INCLUDE_DIRS})
+        include_directories(${Boost_INCLUDE_DIRS})
 
         ##### Video Example
         add_executable(${PROJECT_NAME}_video_example "${CMAKE_HOME_DIRECTORY}/examples/zed_oc_video_example.cpp")
@@ -159,6 +161,19 @@ if(BUILD_EXAMPLES)
           ${OpenCV_LIBS}
         )
         install(TARGETS ${PROJECT_NAME}_rectify_example
+            RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+        )
+
+        ##### Recording Example
+        include_directories( ${CMAKE_HOME_DIRECTORY}/examples/include)
+        add_executable(${PROJECT_NAME}_recording "${CMAKE_HOME_DIRECTORY}/examples/zed_recording.cpp")
+        set_target_properties(${PROJECT_NAME}_recording PROPERTIES PREFIX "")
+        target_link_libraries(${PROJECT_NAME}_recording
+          ${PROJECT_NAME}
+          ${OpenCV_LIBS}
+          ${Boost_LIBRARIES}
+        )
+        install(TARGETS ${PROJECT_NAME}_recording
             RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
         )
     endif()
