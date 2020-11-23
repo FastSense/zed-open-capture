@@ -208,7 +208,6 @@ int main(int argc, char** argv) {
         // Get a new frame from camera
         const sl_oc::video::Frame frame = cap.getLastFrame();
 
-        // ----> If the frame is valid we can convert, rectify and display it
         if (frame.data!=nullptr && frame.timestamp!=last_ts)
         {
             last_ts = frame.timestamp;
@@ -222,13 +221,22 @@ int main(int argc, char** argv) {
             left_raw = frameBGR(cv::Rect(0, 0, frameBGR.cols / 2, frameBGR.rows));
             right_raw = frameBGR(cv::Rect(frameBGR.cols / 2, 0, frameBGR.cols / 2, frameBGR.rows));
 
-            image_name = dir_name + "image_2/" + std::to_string(image_counter) + ".png";
-            cv::imwrite(image_name, left_raw);
+            showImage("left RAW", left_raw, params.res);
+            showImage("right RAW", right_raw, params.res);
+            
+            int key = cv::waitKey( 5 );
+            if(key=='C' || key=='c') 
+            {
+                image_name = dir_name + "image_2/" + std::to_string(image_counter) + ".png";
+                cv::imwrite(image_name, left_raw);
 
-            image_name = dir_name + "image_3/" + std::to_string(image_counter) + ".png";
-            cv::imwrite(image_name, right_raw);
-            image_counter += 1;
-            //std::cout << "Frame saved: " + std::to_string(image_counter) << "\r";
+                image_name = dir_name + "image_3/" + std::to_string(image_counter) + ".png";
+                cv::imwrite(image_name, right_raw);
+
+                std::cout << "Frame saved: " + std::to_string(image_counter) << "\n";
+
+                image_counter += 1;
+            }
         }
     }
 
