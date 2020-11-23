@@ -176,6 +176,19 @@ if(BUILD_EXAMPLES)
         install(TARGETS ${PROJECT_NAME}_recording
             RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
         )
+
+        ##### undistorted Example
+        include_directories( ${CMAKE_HOME_DIRECTORY}/examples/include)
+        add_executable(${PROJECT_NAME}_undistorted "${CMAKE_HOME_DIRECTORY}/examples/zed_undistorted.cpp")
+        set_target_properties(${PROJECT_NAME}_undistorted PROPERTIES PREFIX "")
+        target_link_libraries(${PROJECT_NAME}_undistorted
+          ${PROJECT_NAME}
+          ${OpenCV_LIBS}
+          ${Boost_LIBRARIES}
+        )
+        install(TARGETS ${PROJECT_NAME}_undistorted
+            RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+        )
     endif()
 
     if(BUILD_SENSORS)
