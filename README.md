@@ -69,7 +69,7 @@ The open-source library provides methods to access raw video frames, calibration
 
 * Install HIDAPI and LIBUSB libraries:
 
-    `$ sudo apt install libusb-1.0-0-dev libhidapi-libusb0 libhidapi-dev`
+    `$ sudo apt install libusb-1.0-0-dev libhidapi-libusb0 libhidapi-dev libboost1.62-all-dev`
 
 * Install OpenCV to build the examples (optional)
 
