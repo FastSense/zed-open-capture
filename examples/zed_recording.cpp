@@ -138,7 +138,7 @@ int main(int argc, char** argv) {
     if (calibration_flag == "d" || calibration_flag == "download")
     {
         unsigned int serial_number = sn;
-        if( !downloadCalibrationFile(serial_number, calibration_file) )
+        if(!downloadCalibrationFile(serial_number, calibration_file))
         {
             std::cerr << "Could not load calibration file from Stereolabs servers" << std::endl;
             return EXIT_FAILURE;
@@ -223,20 +223,14 @@ int main(int argc, char** argv) {
 
             showImage("left RAW", left_raw, params.res);
             showImage("right RAW", right_raw, params.res);
-            
-            int key = cv::waitKey( 5 );
-            if(key=='C' || key=='c') 
-            {
-                image_name = dir_name + "image_2/" + std::to_string(image_counter) + ".png";
-                cv::imwrite(image_name, left_raw);
 
-                image_name = dir_name + "image_3/" + std::to_string(image_counter) + ".png";
-                cv::imwrite(image_name, right_raw);
+            image_name = dir_name + "image_2/" + std::to_string(image_counter) + ".png";
+            cv::imwrite(image_name, left_raw);
 
-                std::cout << "Frame saved: " + std::to_string(image_counter) << "\n";
+            image_name = dir_name + "image_3/" + std::to_string(image_counter) + ".png";
+            cv::imwrite(image_name, right_raw);
 
-                image_counter += 1;
-            }
+            image_counter++;
         }
     }
 
